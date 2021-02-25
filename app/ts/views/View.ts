@@ -1,4 +1,5 @@
-class View<T> {
+// Change to abstract class to block instance of the View class
+abstract class View<T> {
 
     private _element: Element;
 
@@ -10,7 +11,5 @@ class View<T> {
         this._element.innerHTML = this.template(model);
     }
 
-    template(model: T): string {
-        throw new Error('Você deve implementar o método template');
-    }
+    abstract template(model: T): string
 }
