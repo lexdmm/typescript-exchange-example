@@ -4,8 +4,8 @@ class ExchangeController {
     private _inputQuant: JQuery;
     private _inputValue: JQuery;
     private _exchanges = new Exchanges();
-    private _exchangesView = new ExchangesView('#exchangesView');
-    private _menssageView = new MessageView('#messageView');
+    private _exchangesView = new Views.ExchangesView('#exchangesView');
+    private _menssageView = new Views.MessageView('#messageView');
 
     constructor() {
         this._inputDate = $('#date');
