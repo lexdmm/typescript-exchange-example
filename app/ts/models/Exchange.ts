@@ -1,4 +1,4 @@
-class Exchange {
+export class Exchange {
     
     constructor(private _date: Date, private _quant: number, private _value: number) {}
 

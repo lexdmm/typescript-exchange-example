@@ -2,9 +2,10 @@
     "compilerOptions": {
         "target": "es6",
         "outDir": "app/js",
-        "noEmitOnError": true, // impede a geração do arquivo js se houver erros de compilação.   
+        "noEmitOnError": true, 
         "noImplicitAny": true,
-        "removeComments": true
+        "removeComments": true,
+        "module": "system"
     },
     "include": [
         "app/ts/**/*"

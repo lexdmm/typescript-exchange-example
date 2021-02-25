@@ -1,11 +1,16 @@
-class ExchangeController {
+import { Exchange } from "../models/Exchange";
+import { Exchanges } from "../models/Exchanges";
+import { ExchangesView } from "../views/ExchangesView";
+import { MessageView } from "../views/MessageView";
+
+export class ExchangeController {
 
     private _inputDate: JQuery;
     private _inputQuant: JQuery;
     private _inputValue: JQuery;
     private _exchanges = new Exchanges();
-    private _exchangesView = new Views.ExchangesView('#exchangesView');
-    private _menssageView = new Views.MessageView('#messageView');
+    private _exchangesView = new ExchangesView('#exchangesView');
+    private _menssageView = new MessageView('#messageView');
 
     constructor() {
         this._inputDate = $('#date');
