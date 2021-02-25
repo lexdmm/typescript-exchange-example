@@ -1,16 +1,4 @@
-class ExchangesView {
-
-    private _element: Element;
-
-    constructor(seletor: string) {
-
-        this._element = document.querySelector(seletor);
-    }
-
-    update(model: Exchanges) {
-
-        this._element.innerHTML = this.template(model);
-    }
+class ExchangesView extends View<Exchanges> {
 
     template(model: Exchanges): string {
 
