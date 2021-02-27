@@ -1,20 +1,8 @@
 export class Exchange {
     
-    constructor(private _date: Date, private _quant: number, private _value: number) {}
-
-    get date() {
-        return this._date;
-    }
-
-    get quant() {
-        return this._quant;
-    }
-
-    get value() {
-        return this._value;
-    }
+    constructor(readonly date: Date, readonly quant: number, readonly value: number) {}
 
     get volume() {
-        return this._quant * this._value;
+        return this.quant * this.value;
     }
 }

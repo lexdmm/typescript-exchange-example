@@ -1,7 +1,5 @@
-import { Exchange } from "../models/Exchange";
-import { Exchanges } from "../models/Exchanges";
-import { ExchangesView } from "../views/ExchangesView";
-import { MessageView } from "../views/MessageView";
+import { Exchange, Exchanges } from "../models/index";
+import { ExchangesView, MessageView } from "../views/index";
 
 export class ExchangeController {
 
@@ -9,8 +7,8 @@ export class ExchangeController {
     private _inputQuant: JQuery;
     private _inputValue: JQuery;
     private _exchanges = new Exchanges();
-    private _exchangesView = new ExchangesView('#exchangesView');
-    private _menssageView = new MessageView('#messageView');
+    private _exchangesView = new ExchangesView('#exchangesView', true);
+    private _menssageView = new MessageView('#messageView', true);
 
     constructor() {
         this._inputDate = $('#date');
