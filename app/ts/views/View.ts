@@ -4,7 +4,7 @@ export abstract class View<T> {
     private _element: JQuery;
     private _scape: boolean;
 
-    constructor(selector: string, scape: boolean) {
+    constructor(selector: string, scape?: boolean) {
         this._element = $(selector);
         this._scape = scape
     }
