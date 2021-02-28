@@ -20,6 +20,7 @@ export class ExchangeController {
     constructor() {
         /**
          * Now it is no longer necessary to use these variables here, let's do a lazy loading of the DOM. Using Lazy Load.
+         * Lazy Load, makes the data not load in the constructor. They will only be loaded when we interact with them.
          */
         // this._inputDate = $('#date'); 
         // this._inputQuant = $('#quant');
