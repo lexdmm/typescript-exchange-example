@@ -30,7 +30,7 @@ export class ExchangeController {
         this._exchangesView.update(this._exchanges);
     }
 
-    add(event: Event) {
+    public add(event: Event) {
 
         event.preventDefault();
 
@@ -51,6 +51,26 @@ export class ExchangeController {
         // since adding, updates a view again to reflect the data
         this._exchangesView.update(this._exchanges);
         this._menssageView.update('Added successfully!');
+    }
+
+    public importData () {        
+        fetch('http://localhost:4001/api').then(res => this.isOK(res))
+        .then(res => res.json())
+        .then((dataList: IExchange[]) => {
+            dataList.map(data => new Exchange(new Date(), data.volume, data.quantities))
+                .forEach(exchange => this._exchanges.add(exchange));
+    
+            this._exchangesView.update(this._exchanges);
+        })
+        .catch(err => console.log(err.message));
+    }
+
+    private isOK(res: Response) {
+        if(res.ok) {
+            return res;
+        } else {
+            throw new Error(res.statusText);
+        }
     }
 
     private _isWorkDay (date: Date) {

@@ -1,22 +1,21 @@
 {
-    "api": {
-        "data": [
-            {        
-                "amount": 200.5,
-                "vezes": 2
-            },
-            {        
-                "amount": 100.2,
-                "vezes": 5
-            },
-            {
-                "amount": 50.5,
-                "vezes": 1
-            },
-            {
-                "amount": 70.5,
-                "vezes": 2
-            }
-        ]
-    }
+    "api": [
+
+        {        
+            "quantities": 200.5,
+            "volume": 2
+        },
+        {        
+            "quantities": 100.2,
+            "volume": 5
+        },
+        {
+            "quantities": 50.5,
+            "volume": 1
+        },
+        {
+            "quantities": 70.5,
+            "volume": 2
+        }
+    ]
 }
