@@ -1,4 +1,4 @@
-import { DomInject } from "../helpers/decorators/index";
+import { DomInject, Throttle } from "../helpers/decorators/index";
 import { Exchange, Exchanges } from "../models/index";
 import { ExchangesView, MessageView } from "../views/index";
 
@@ -30,11 +30,9 @@ export class ExchangeController {
         this._exchangesView.update(this._exchanges);
     }
 
-    public add(event: Event) {
+    public add() {
 
-        event.preventDefault();
-
-        let date = new Date(this._inputDate.val().replace(/-/g, ','));
+         let date = new Date(this._inputDate.val().replace(/-/g, ','));
         if(this._isWorkDay(date)) {
             this._menssageView.update('Only work days negotiations, please!');
             return 
@@ -53,6 +51,7 @@ export class ExchangeController {
         this._menssageView.update('Added successfully!');
     }
 
+    @Throttle()
     public importData () {        
         fetch('http://localhost:4001/api').then(res => this.isOK(res))
         .then(res => res.json())
