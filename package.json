@@ -8,13 +8,15 @@
     "compile": "tsc",
     "watch": "tsc -w",
     "server": "lite-server --baseDir=app",
-    "start": "concurrently \"npm run watch\" \"npm run server\""
+    "json-server": "json-server --watch db.json --port 4001",
+    "start": "concurrently \"npm run json-server\" \"npm run watch\" \"npm run server\""
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/jquery": "^2.0.42",
     "concurrently": "^6.0.0",
+    "json-server": "^0.16.3",
     "lite-server": "^2.6.1",
     "typescript": "^2.3.2"
   },
