@@ -23,6 +23,12 @@ export class ExchangeController {
 
         event.preventDefault();
 
+        let date = new Date(this._inputDate.val().replace(/-/g, ','));
+        if(this._isWorkDay(date)) {
+            this._menssageView.update('Somente negociações em dias úteis, por favor!');
+            return 
+        }
+
         const exchange = new Exchange(
             new Date(this._inputDate.val().replace(/-/g, ',')), 
             parseInt(this._inputQuant.val()),
@@ -35,4 +41,18 @@ export class ExchangeController {
         this._exchangesView.update(this._exchanges);
         this._menssageView.update('Added successfully!');
     }
+
+    private _isWorkDay (date: Date) {
+        return date.getDay() != WeekDAy.Saturday && date.getDay() != WeekDAy.Sunday;
+    }
+}
+
+enum WeekDAy {
+    Sunday,
+    Second,
+    Third,
+    Fourth,
+    Fifth,
+    Friday,
+    Saturday,
 }

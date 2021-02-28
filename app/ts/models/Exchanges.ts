@@ -10,6 +10,6 @@ export class Exchanges {
     }
 
     getArray(): Exchange[] {
-        return [].concat(this._exchanges);
+        return ([] as Exchange[]).concat(this._exchanges);
     }
 }
