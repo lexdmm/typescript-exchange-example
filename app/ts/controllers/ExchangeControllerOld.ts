@@ -1,31 +1,21 @@
-import { DomInject } from "../helpers/decorators/index";
 import { Exchange, Exchanges } from "../models/index";
 import { ExchangesView, MessageView } from "../views/index";
 
 export class ExchangeController {
 
-    @DomInject('#date')
     private _inputDate: JQuery;
-
-    @DomInject('#quant')
     private _inputQuant: JQuery;
-
-    @DomInject('#value')
     private _inputValue: JQuery;
-
     private _exchanges = new Exchanges();
     private _exchangesView = new ExchangesView('#exchangesView');
     private _menssageView = new MessageView('#messageView');
 
     constructor() {
-        /**
-         * Now it is no longer necessary to use these variables here, let's do a lazy loading of the DOM. Using Lazy Load.
-         */
-        // this._inputDate = $('#date'); 
-        // this._inputQuant = $('#quant');
-        // this._inputValue = $('#value');
+        this._inputDate = $('#date');
+        this._inputQuant = $('#quant');
+        this._inputValue = $('#value');
 
-        // updates the view to display the model data, empty
+       // updates the view to display the model data, empty
         this._exchangesView.update(this._exchanges);
     }
 

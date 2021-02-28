@@ -3,7 +3,7 @@
  * @param timeUnit time unit can be milleseconds 'ms' or seconds 's'
  */
 export function RuntimeLog(timeUnit: string = 'ms') {
-    return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+    return function (target: any, key: string, descriptor: PropertyDescriptor) {
         const originalMethod = descriptor.value;
 
         /**
@@ -12,7 +12,7 @@ export function RuntimeLog(timeUnit: string = 'ms') {
          * Javascritpt treats them as an array.
          * @param args 
          */
-        descriptor.value = function(...args: any[]) {
+        descriptor.value = (...args: any[]) =>{
 
             let divider = 1;
             let unit = 'milliseconds'
@@ -22,13 +22,13 @@ export function RuntimeLog(timeUnit: string = 'ms') {
             }
 
             console.log('-----------------------');
-            console.log(`Method parameters ${propertyKey}: ${JSON.stringify(args)}`);
+            console.log(`Method parameters ${key}: ${JSON.stringify(args)}`);
             const t1 = performance.now();
 
             const ret = originalMethod.apply(this, args);            
 
             const t2 = performance.now();
-            console.log(`${propertyKey} delayed ${(t2 - t1)/divider} ${unit}`);
+            console.log(`${key} delayed ${(t2 - t1)/divider} ${unit}`);
             console.log('-----------------------');
 
             return ret;
