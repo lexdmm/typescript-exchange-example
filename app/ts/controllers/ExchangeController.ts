@@ -25,7 +25,7 @@ export class ExchangeController {
 
         let date = new Date(this._inputDate.val().replace(/-/g, ','));
         if(this._isWorkDay(date)) {
-            this._menssageView.update('Somente negociações em dias úteis, por favor!');
+            this._menssageView.update('Only work days negotiations, please!');
             return 
         }
 
@@ -43,16 +43,6 @@ export class ExchangeController {
     }
 
     private _isWorkDay (date: Date) {
-        return date.getDay() != WeekDAy.Saturday && date.getDay() != WeekDAy.Sunday;
+        return date.getDay() == 0 || date.getDay() == 6;
     }
-}
-
-enum WeekDAy {
-    Sunday,
-    Second,
-    Third,
-    Fourth,
-    Fifth,
-    Friday,
-    Saturday,
 }
