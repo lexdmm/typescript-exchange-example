@@ -8,7 +8,7 @@ export function DomInject(selector: string) {
         let element: JQuery;
         const getter = () => {
             if(!element) {
-                console.log(`find  ${selector} para injetar em ${key}`);
+                console.log(`find  ${selector} to inject on ${key}`);
                 element = $(selector);
             }
 
