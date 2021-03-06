@@ -1,4 +1,5 @@
-import { DomInject, print, Throttle } from "../helpers/decorators/index";
+import { DomInject, Throttle } from "../helpers/decorators/index";
+import { printText } from "../helpers/utils/Utils";
 import { IResponseHandler } from "../interfaces/index";
 import { Exchange, Exchanges } from "../models/index";
 import { ExchangeService } from "../services/index";
@@ -53,7 +54,7 @@ export class ExchangeController {
         this._exchangesView.update(this._exchanges);
         this._menssageView.update('Added successfully!');
 
-        print(exchange, this._exchanges)
+        printText(exchange, this._exchanges)
     }
 
     @Throttle()
