@@ -1,3 +1,3 @@
-export abstract class Printable {
-    abstract getText(): void;
+export interface Printable {
+    getText(): void;
 }

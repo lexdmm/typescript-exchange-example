@@ -1,9 +1,7 @@
-import { Printable } from "./index";
+import { Printable } from "./Printable";
 
-export class Exchange extends Printable {    
-    constructor (readonly date: Date, readonly quant: number, readonly value: number) {
-        super(); // the super only has the method getText()
-    }
+export class Exchange implements Printable {    
+    constructor (readonly date: Date, readonly quant: number, readonly value: number) { }
 
     get volume() {
         return this.quant * this.value;
