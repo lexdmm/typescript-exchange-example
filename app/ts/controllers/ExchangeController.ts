@@ -1,9 +1,12 @@
-import { DomInject, Throttle } from "../helpers/decorators/index";
+import { DomInject } from "../helpers/decorators/DomInject";
+import { Throttle } from "../helpers/decorators/Throttle";
 import { printText } from "../helpers/utils/Utils";
-import { IResponseHandler } from "../interfaces/index";
-import { Exchange, Exchanges } from "../models/index";
-import { ExchangeService } from "../services/index";
-import { ExchangesView, MessageView } from "../views/index";
+import { IResponseHandler } from "../interfaces/IResponseHandler";
+import { Exchange } from "../models/Exchange";
+import { Exchanges } from "../models/Exchanges";
+import { ExchangeService } from "../services/ExchangeService";
+import { ExchangesView } from "../views/ExchangesView";
+import { MessageView } from "../views/MessageView";
 
 export class ExchangeController {
 
@@ -68,9 +71,14 @@ export class ExchangeController {
         }
 
         this._service.getData(isOK)
-            .then((exchangeList) => {
-                exchangeList.forEach((exchange) => 
-                    this._exchanges.add(exchange));
+            .then(importedList => {
+                const alreadyImportedList = this._exchanges.getArray();
+
+                importedList.filter(exchange => 
+                        !alreadyImportedList.some(imported => 
+                            exchange.isObjetctEqual(imported)))
+                            .forEach(exchange => this._exchanges.add(exchange));
+
                 this._exchangesView.update(this._exchanges);
             });
     }

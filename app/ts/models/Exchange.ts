@@ -1,13 +1,14 @@
+import { IObjectIsEqual } from "../interfaces/IObjectIsEqual";
 import { IPrintable } from "../interfaces/IPrintable";
 
-export class Exchange implements IPrintable {    
+export class Exchange implements IPrintable, IObjectIsEqual<Exchange> {    
     constructor (readonly date: Date, readonly quant: number, readonly value: number) { }
 
     get volume() {
         return this.quant * this.value;
     }
 
-    public getText(): void {
+    getText(): void {
         console.log('-- getText --');
         console.log(
             `Date: ${this.date}
@@ -15,5 +16,11 @@ export class Exchange implements IPrintable {
             Value: ${this.value}, 
             Volume: ${this.volume}`
         );
+    }
+
+    isObjetctEqual (exchange: Exchange): boolean {
+        return this.date.getDate() == exchange.date.getDate()
+            && this.date.getMonth() == exchange.date.getMonth()
+            && this.date.getFullYear() == exchange.date.getFullYear();
     }
 }
