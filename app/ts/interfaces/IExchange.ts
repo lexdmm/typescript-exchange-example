@@ -1,7 +1,7 @@
 /**
  * Interface to Exchange class
  */
-interface IExchange {
+export interface IExchange {
     volume: number,
     quantities: number;
 }
