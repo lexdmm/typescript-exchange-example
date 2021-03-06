@@ -1,3 +1,5 @@
-export function printText(...exchanges: any[]) {
-    exchanges.forEach(exchange => exchange.getText());
+import { Printable } from "../../models/index";
+
+export function printText(...objects: Printable[]) {
+    objects.forEach(object => object.getText());
 }

@@ -1,7 +1,7 @@
-import { Exchange } from "./Exchange";
+import { Exchange, Printable } from "./index";
 
 // app/js/models/Negociacao.js
-export class Exchanges {
+export class Exchanges extends Printable {
 
     private _exchanges: Exchange[] = [];
 
