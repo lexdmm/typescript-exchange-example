@@ -1,6 +1,6 @@
-import { Printable } from "./Printable";
+import { IPrintable } from "../interfaces/IPrintable";
 
-export class Exchange implements Printable {    
+export class Exchange implements IPrintable {    
     constructor (readonly date: Date, readonly quant: number, readonly value: number) { }
 
     get volume() {

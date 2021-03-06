@@ -1,5 +1,5 @@
-import { Printable } from "../../models/Printable";
+import { IPrintable } from "../../interfaces/IPrintable";
 
-export function printText(...objects: Printable[]) {
+export function printText(...objects: IPrintable[]) {
     objects.forEach(object => object.getText());
 }
