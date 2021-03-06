@@ -1,5 +1,5 @@
 {
-  "name": "TypescriptExchangeExample",
+  "name": "typescript-exchange-example",
   "version": "1.0.0",
   "description": "working typescript",
   "main": "index.js",
@@ -8,17 +8,17 @@
     "compile": "tsc",
     "watch": "tsc -w",
     "server": "lite-server --baseDir=app",
-    "json-server": "json-server --watch db.json --port 4001",
-    "start": "concurrently \"npm run json-server\" \"npm run watch\" \"npm run server\""
+    "json-server": "json-server --watch db.json --port 4041",
+    "start": "concurrently \"npm run watch\" \"npm run json-server\" \"npm run server\""
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/jquery": "^2.0.42",
+    "@types/jquery": "^2.0.56",
     "concurrently": "^6.0.0",
     "json-server": "^0.16.3",
     "lite-server": "^2.6.1",
-    "typescript": "^2.3.2"
+    "typescript": "^2.9.2"
   },
   "dependencies": {}
 }
