@@ -49,12 +49,11 @@ export class ExchangeController {
         );
 
         this._exchanges.add(exchange);
-
+        printText(exchange, this._exchanges)
+    
         // since adding, updates a view again to reflect the data
         this._exchangesView.update(this._exchanges);
-        this._menssageView.update('Added successfully!');
-
-        printText(exchange, this._exchanges)
+        this._menssageView.update('Added successfully!');        
     }
 
     @Throttle()
