@@ -1,5 +1,7 @@
-import { DomInject, Throttle } from "../helpers/decorators/index";
+import { DomInject, print, Throttle } from "../helpers/decorators/index";
+import { IResponseHandler } from "../interfaces/index";
 import { Exchange, Exchanges } from "../models/index";
+import { ExchangeService } from "../services/index";
 import { ExchangesView, MessageView } from "../views/index";
 
 export class ExchangeController {
@@ -16,6 +18,7 @@ export class ExchangeController {
     private _exchanges = new Exchanges();
     private _exchangesView = new ExchangesView('#exchangesView');
     private _menssageView = new MessageView('#messageView');
+    private _service = new ExchangeService();
 
     constructor() {
         /**
@@ -32,14 +35,14 @@ export class ExchangeController {
 
     public add() {
 
-         let date = new Date(this._inputDate.val().replace(/-/g, ','));
+        let date = new Date(this._inputDate.val().replace(/-/g, ','));
         if(this._isWorkDay(date)) {
             this._menssageView.update('Only work days negotiations, please!');
             return 
         }
 
         const exchange = new Exchange(
-            new Date(this._inputDate.val().replace(/-/g, ',')), 
+            date, 
             parseInt(this._inputQuant.val()),
             parseFloat(this._inputValue.val())
         );
@@ -49,27 +52,27 @@ export class ExchangeController {
         // since adding, updates a view again to reflect the data
         this._exchangesView.update(this._exchanges);
         this._menssageView.update('Added successfully!');
+
+        print(exchange, this._exchanges)
     }
 
     @Throttle()
-    public importData () {        
-        fetch('http://localhost:4001/api').then(res => this.isOK(res))
-        .then(res => res.json())
-        .then((dataList: IExchange[]) => {
-            dataList.map(data => new Exchange(new Date(), data.volume, data.quantities))
-                .forEach(exchange => this._exchanges.add(exchange));
-    
-            this._exchangesView.update(this._exchanges);
-        })
-        .catch(err => console.log(err.message));
-    }
+    public importData () {      
 
-    private isOK(res: Response) {
-        if(res.ok) {
-            return res;
-        } else {
-            throw new Error(res.statusText);
+        const isOK: IResponseHandler = (res: Response) => {
+            if(res.ok) {
+                return res;
+            } else {
+                throw new Error(res.statusText);
+            }           
         }
+
+        this._service.getData(isOK)
+            .then((exchangeList) => {
+                exchangeList.forEach((exchange) => 
+                    this._exchanges.add(exchange));
+                this._exchangesView.update(this._exchanges);
+            });
     }
 
     private _isWorkDay (date: Date) {
