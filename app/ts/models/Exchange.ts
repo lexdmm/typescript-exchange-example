@@ -1,7 +1,6 @@
-import { IObjectIsEqual } from "../interfaces/IObjectIsEqual";
-import { IPrintable } from "../interfaces/IPrintable";
+import { IExchangeObject } from "../interfaces/IExchangeObject";
 
-export class Exchange implements IPrintable, IObjectIsEqual<Exchange> {    
+export class Exchange implements IExchangeObject<Exchange> {    
     constructor (readonly date: Date, readonly quant: number, readonly value: number) { }
 
     get volume() {

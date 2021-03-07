@@ -1,9 +1,8 @@
-import { IPrintable } from "../interfaces/IPrintable";
-import { IObjectIsEqual } from "../interfaces/IObjectIsEqual";
 import { Exchange } from "./Exchange";
+import { IExchangeObject } from "../interfaces/IExchangeObject";
 
 // app/js/models/Negociacao.js
-export class Exchanges implements IPrintable, IObjectIsEqual<Exchanges> {
+export class Exchanges implements IExchangeObject<Exchanges> {
     private _exchanges: Exchange[] = [];
 
     add(exchange: Exchange) {
