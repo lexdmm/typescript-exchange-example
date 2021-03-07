@@ -60,27 +60,31 @@ export class ExchangeController {
     }
 
     @Throttle()
-    public importData () {      
+    public async importData () {      
 
-        const isOK: IResponseHandler = (res: Response) => {
-            if(res.ok) {
-                return res;
-            } else {
-                throw new Error(res.statusText);
-            }           
+        try {       
+            const importList = await this._service.getData((res: Response) => {
+                if(res.ok) {
+                    return res;
+                } else {
+                    throw new Error(res.statusText);
+                }  
+            });
+
+            const alreadyImportedList = this._exchanges.getArray();
+            importList.filter(exchange => 
+                    !alreadyImportedList.some(imported => 
+                        exchange.isObjetctEqual(imported)))
+                        .forEach(exchange => this._exchanges.add(exchange));
+    
+            this._exchangesView.update(this._exchanges);
+        } catch (error) {
+            this._menssageView.update(error.message)
         }
 
-        this._service.getData(isOK)
-            .then(importedList => {
-                const alreadyImportedList = this._exchanges.getArray();
+    
 
-                importedList.filter(exchange => 
-                        !alreadyImportedList.some(imported => 
-                            exchange.isObjetctEqual(imported)))
-                            .forEach(exchange => this._exchanges.add(exchange));
 
-                this._exchangesView.update(this._exchanges);
-            });
     }
 
     private _isWorkDay (date: Date) {

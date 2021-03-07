@@ -1,5 +1,6 @@
-import { IExchange, IResponseHandler } from "../interfaces/index";
-import { Exchange } from "../models/index";
+import { IExchange } from "../interfaces/IExchange";
+import { IResponseHandler } from "../interfaces/IResponseHandler";
+import { Exchange } from "../models/Exchange";
 
 export class ExchangeService {
     public async getData (handler: IResponseHandler): Promise<Exchange[]> {      
@@ -11,7 +12,7 @@ export class ExchangeService {
             )
             .catch((err) => { 
                 console.log(err.message) 
-                return []
+                throw new Error("Couldn't import data. Service temporarily down.")
             });
     }
 }
